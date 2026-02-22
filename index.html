@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家族カレンダー</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>👨‍👩‍👧‍👦 家族カレンダー</h1>
+            <div class="header-controls">
+                <button id="prevMonth" class="nav-button">◀</button>
+                <h2 id="currentMonth"></h2>
+                <button id="nextMonth" class="nav-button">▶</button>
+                <button id="todayButton" class="today-button">今日</button>
+            </div>
+        </header>
+
+        <div class="family-members">
+            <div class="member-list" id="memberList"></div>
+            <button id="addMemberButton" class="add-member-button">+ メンバーを追加</button>
+        </div>
+
+        <div class="calendar-wrapper">
+            <div class="calendar-header">
+                <div class="day-name">日</div>
+                <div class="day-name">月</div>
+                <div class="day-name">火</div>
+                <div class="day-name">水</div>
+                <div class="day-name">木</div>
+                <div class="day-name">金</div>
+                <div class="day-name">土</div>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+
+        <button id="addEventButton" class="add-event-button">+ 予定を追加</button>
+    </div>
+
+    <!-- モーダル: 予定追加/編集 -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">予定を追加</h2>
+            <form id="eventForm">
+                <div class="form-group">
+                    <label for="eventTitle">タイトル:</label>
+                    <input type="text" id="eventTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDate">日付:</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventTime">時刻:</label>
+                    <input type="time" id="eventTime">
+                </div>
+                <div class="form-group">
+                    <label for="eventMember">メンバー:</label>
+                    <select id="eventMember" required>
+                        <option value="">選択してください</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="eventDescription">詳細:</label>
+                    <textarea id="eventDescription" rows="3"></textarea>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="submit-button">保存</button>
+                    <button type="button" id="deleteEventButton" class="delete-button" style="display:none;">削除</button>
+                    <button type="button" class="cancel-button">キャンセル</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- モーダル: メンバー追加 -->
+    <div id="memberModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>メンバーを追加</h2>
+            <form id="memberForm">
+                <div class="form-group">
+                    <label for="memberName">名前:</label>
+                    <input type="text" id="memberName" required>
+                </div>
+                <div class="form-group">
+                    <label for="memberColor">カラー:</label>
+                    <div class="color-picker">
+                        <input type="color" id="memberColor" value="#4285f4">
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="submit-button">追加</button>
+                    <button type="button" class="cancel-button">キャンセル</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- モーダル: 予定詳細 -->
+    <div id="eventDetailModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="eventDetailContent"></div>
+            <div class="form-buttons">
+                <button id="editEventButton" class="submit-button">編集</button>
+                <button class="cancel-button">閉じる</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
